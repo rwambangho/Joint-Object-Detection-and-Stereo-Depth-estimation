@@ -1,5 +1,5 @@
 # Stereo Depth and Object Detection
- ![Uploading ezgif-1-490eb03457.gif…]()
+![ezgif-1-490eb03457](https://github.com/user-attachments/assets/51e77677-ae7b-4721-bb3d-4b539784099f)"
 
 ## 자율 주행을 위한 객체 인식 및 거리 측정 모델 개발
 
