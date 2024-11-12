@@ -214,8 +214,3 @@ results(loss, mAP, precision, reacall)
 > 
 
 ---
-
-# 4. 시연 영상
-
-- **1245x375, 200 epochs**
-<img src="https://github.com/user-attachments/assets/6a8e9544-2f87-4e7b-9dfd-29a470c25885" width=800>
