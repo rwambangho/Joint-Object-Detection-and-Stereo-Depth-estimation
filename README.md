@@ -1,7 +1,5 @@
 # Stereo_Depth_and_Object_Detection
  
-# 대포 (DEP-OB)
-
 ## 자율 주행을 위한 객체 인식 및 거리 측정 모델 개발
 
 - 참여 인원 : 박윤수, 윤병호, 차준영, 최현우
@@ -88,9 +86,10 @@
 
 Stereo Vision은 두 개의 카메라(왼쪽, 오른쪽)를 사용하여 깊이 정보를 추정하는 기술입니다. 왼쪽 이미지와 오른쪽 이미지를 통한 동일한 객체의 위치 차이를 → “**시차”** 라고하며, 객체의 깊이를 계산합니다.
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/249a26a3-6356-4beb-a260-6767595d6ccd/image.png)
+<img src="https://github.com/user-attachments/assets/cf517516-d3fe-4869-a024-babe790bda40" width=300>
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/3fdff83a-d849-479f-a5b8-e2434f0f171d/image.png)
+
+<img src="https://github.com/user-attachments/assets/a4c74a5b-2bef-416f-953e-143d007cbe95" width=550>
 
 $Where$:
 
@@ -151,24 +150,27 @@ def compute_sgbm_disparity(left_image, right_image, num_disparities=5*16,
 
 1. **640 X 640 Depth 결과**
 
-![download.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/96dd9115-ef65-4b47-9cef-16049d6244e7/download.png)
+<img src="https://github.com/user-attachments/assets/740b41cb-5d2f-4110-9870-82806290ab5b" width=600>
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/79cb3049-11db-4064-8823-e8a2ee5862a9/image.png)
+<img src="https://github.com/user-attachments/assets/8acd736a-8d67-402d-acc4-4d9a841549aa" width=600>
 
 1. **1245 X 375 (원본비율) Depth 결과**
 
-![다운로드 (15).png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/084ad3c5-1286-4538-8c9b-16e24024903b/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C_(15).png)
 
-![다운로드 (16).png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/7a02fa6e-bce5-4eb6-9125-70f25982acf3/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C_(16).png)
+<img src="https://github.com/user-attachments/assets/86c6cc81-f074-4eca-b6ee-60f0934e6e54" width=1000>
+
+![image](https://github.com/user-attachments/assets/9bc0922f-104b-4c8f-b508-72d43b9e65c4)
+
 
 1.  **Resizing이 Stereo Vision Disparity 안정성에 미치는 영향**
 - **640 X 640**
     
-    ![download.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/1f083695-94bd-4e93-b0bc-a4fb4dcd1ede/download.png)
+<img src="https://github.com/user-attachments/assets/40a48241-dc1f-490e-927e-8df7d8f48617" width=400>
     
 - **1245 X 375**
 
-![download.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/e6770501-3856-4473-aa2a-1d52ea5cfd88/download.png)
+![image](https://github.com/user-attachments/assets/0fcd640f-66d5-4c47-b7db-db8bd7a462fd)
+
 
 > 원본 이미지의 Bbox 비율이 Aspect Ratio와 맞지 않을 것을 고려해, 640x640 이미지로 Resizing하여 테스트하였지만, 오히려 원본 이미지에서의 disparity가 더 안정적인 것을 확인할 수 있었다.
 > 
@@ -181,43 +183,27 @@ def compute_sgbm_disparity(left_image, right_image, num_disparities=5*16,
 # 3. Object Detection Result with YOLOv8
 
 ## 3.1 YOLOv8s 모델 성능에 대한 그래프
+![image](https://github.com/user-attachments/assets/a8762147-bebb-4996-9f9d-007ac3cae4ef)
 
-![Precision Curve](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/3dc34a58-e00f-48b1-beb5-1dc37236bd1c/P_curve.png)
-
-Precision Curve
-
-![F1 score curve](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/73510347-208b-4d62-bd32-15fb1ad14481/F1_curve.png)
-
-F1 score curve
-
-![Recall-Confidence Curve](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/39df4631-626f-4bd1-877e-18a30ee00fad/R_curve.png)
-
-Recall-Confidence Curve
-
-![Precision Recall Curve](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/9891b647-3730-4577-90b8-8adba26b7090/PR_curve.png)
-
-Precision Recall Curve
+![image](https://github.com/user-attachments/assets/465abc43-0fc8-4145-9485-b9f6fadd5572)
 
 > All classes에 대해 90%이상의 높은 성능을 확인할 수 있었습니다.
 > 
 
 ## 3.2 Confusion Matrix
 
-![confusion matrix](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/c5ceb23b-01e3-42e3-b3f7-485d9fd3de63/confusion_matrix.png)
+![image](https://github.com/user-attachments/assets/2b7a4ce3-6b18-43b1-8fed-0303c4310020)
 
-confusion matrix
-
-![confusion matrix normalization](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/f0e3a75c-d5d5-4d3a-800b-c7112127bee3/confusion_matrix_normalized.png)
-
-confusion matrix normalization
 
 ## 3.2 Epochs에 따른 성능 변화
 
-![results(loss, mAP, precision, reacall)](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/eb6c350e-ecac-456b-9760-1abfddb6ed37/results.png)
+![image](https://github.com/user-attachments/assets/0e9cfd84-00b4-45f7-b8d2-32306bfe9839)
+
 
 results(loss, mAP, precision, reacall)
 
-![각 클래스에 대한 AP, mAP 값](https://prod-files-secure.s3.us-west-2.amazonaws.com/8e93c4f1-6ad9-4a70-8e85-041046be0f87/59ace73b-36e2-43f5-8ff6-660ccdd96e6d/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-11-12_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_6.13.18.png)
+![image](https://github.com/user-attachments/assets/b49050fc-e764-42d6-9672-caf40e05f0e4)
+
 
 각 클래스에 대한 AP, mAP 값
 
