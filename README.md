@@ -214,3 +214,7 @@ results(loss, mAP, precision, reacall)
 > 
 
 ---
+
+# 4. 시연영상
+
+https://youtu.be/so9aCNwSJqw
