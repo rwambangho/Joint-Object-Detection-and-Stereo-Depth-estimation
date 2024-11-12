@@ -1,5 +1,6 @@
 # Stereo Depth and Object Detection
- 
+ ![Uploading ezgif-1-490eb03457.gif…]()
+
 ## 자율 주행을 위한 객체 인식 및 거리 측정 모델 개발
 
 - 참여 인원 : 박윤수, 윤병호, 차준영, 최현우
