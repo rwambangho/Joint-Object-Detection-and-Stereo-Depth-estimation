@@ -1,4 +1,4 @@
-# Stereo_Depth_and_Object_Detection
+# Stereo Depth and Object Detection
  
 ## 자율 주행을 위한 객체 인식 및 거리 측정 모델 개발
 
